@@ -1,30 +1,4 @@
-from fastapi import FastAPI, Request
-import uvicorn
-import os
 
-TOKEN = os.getenv("BOT_TOKEN")  # 🧪 Берёт токен из переменных среды
-
-app = FastAPI()
-
-@app.post("/")
-async def handle_webhook(request: Request):
-    data = await request.json()
-    
-    if "message" in data:
-        chat_id = data["message"]["chat"]["id"]
-        text = data["message"].get("text", "")
-        
-        # Команды
-        if text == "/start":
-            await bot.send_message(chat_id=chat_id, text="👋 Привет! Я RUGUSA. Готов к службе.")
-        elif text == "/help":
-            await bot.send_message(chat_id=chat_id, text="🛠 Доступные команды:\n/start\n/help\n/info")
-        elif text == "/info":
-            await bot.send_message(chat_id=chat_id, text="💡 Я — бот RUGUSA, созданный с душой.")
-        else:
-            await bot.send_message(chat_id=chat_id, text="🔍 Неизвестная команда. Напиши /help.")
-    
-    return {"ok": True}
 from fastapi import FastAPI, Request
 import uvicorn
 import os
@@ -40,12 +14,12 @@ async def webhook(request: Request):
 
     if text in ["/start", "start"]:
         reply = "👋 Привет! Я готов к работе."
-    elif text in ["pognali", "поехали"]:
+    elif text in ["поехали", "погнали"]:
         reply = "🚀 Погнали!"
     elif "погода" in text:
-        reply = "☀️ Сейчас хорошая погода. (Пример)"
+        reply = "🌤 Сейчас хорошая погода. (Пример)"
     else:
-        reply = "🤖 Я тебя слышу. Скажи что-нибудь ещё."
+        reply = "🧠 Я тебя слышу. Скажи что-нибудь ещё."
 
     if chat_id:
         send_message(chat_id, reply)
