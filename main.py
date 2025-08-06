@@ -1,10 +1,8 @@
 from fastapi import FastAPI, Request
 import uvicorn
-import telegram
 import os
 
 TOKEN = os.getenv("BOT_TOKEN")  # 🧪 Берёт токен из переменных среды
-bot = telegram.Bot(token=TOKEN)
 
 app = FastAPI()
 
